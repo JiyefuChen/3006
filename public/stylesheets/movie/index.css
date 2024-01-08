@@ -1,0 +1,57 @@
+@import "../base.css";
+
+.movies-list-container {
+    width: 80%;
+    margin: 20px auto;
+}
+
+.movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.movie {
+    width: 300px;
+    background-color: #fff;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.movie-details {
+    padding: 10px;
+}
+
+.movie-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.movie-info {
+    margin-top: 5px;
+    color: #555;
+}
+
+.buy-ticket-button {
+    display: block;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.buy-ticket-button:hover {
+    background-color: #45a049;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Screenings</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+<header>
+    <% if(typeof movieId !== 'undefined'){ %>
+        <h1>Manage Screenings - <%= movieId %></h1>
+    <% }else{ %>
+        <h1>Manage Screenings</h1>
+    <% } %>
+</header>
+<main>
+    <h2>Screenings List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Movie Title</th>
+            <th>Screening Start Time</th>
+            <th>Seats</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Order Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% orders.forEach(order => { %>
+            <tr>
+                <td><%= order._id %></td>
+                <td><%= order.screening_id.movie_id.title %></td>
+                <td><%= order.screening_id.formattedDate %></td>
+                <td><%= order.seats.join(', ') %></td>
+                <td><%= order.total_amount %></td>
+                <td><%= OrderStatusLabel[order.status] %></td>
+                <td><%= order.formattedDate %></td>
+                <td><a href="/admin/orders/detail/<%= order._id %>">View</a></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+    <div class="back-to-home">
+        <a href="/admin/">Back to Dashboard</a>
+    </div>
+</main>
+</body>
+</html>

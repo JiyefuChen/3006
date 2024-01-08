@@ -1,0 +1,50 @@
+@import "../base.css";
+
+.order-detail-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-information {
+    margin-bottom: 20px;
+}
+
+.order-information h2 {
+    color: #333;
+}
+
+.order-information p {
+    margin: 8px 0;
+}
+
+.pay-order-btn-container {
+    text-align: center;
+}
+
+.pay-order-btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pay-order-btn:hover {
+    background-color: #45a049;
+}
+
+.navigation-links a {
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.navigation-links a:hover {
+    color: #4CAF50;
+}

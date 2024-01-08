@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Detail</title>
+    <link rel="stylesheet" href="/stylesheets/order/detail.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+<header>
+    <h1>Order Detail</h1>
+</header>
+<main class="order-detail-container">
+    <div class="order-information">
+        <h2>Order Information</h2>
+        <p><strong>Order ID:</strong> <%= order._id %></p>
+        <p><strong>Username:</strong> <%= order.user_id.username %></p>
+        <p><strong>Movie Title:</strong>
+            <a href="/movie/detail/<%= order.screening_id.movie_id._id %>"><%= order.screening_id.movie_id.title %></a>
+        </p>
+        <p>
+            <strong>Screening ID:</strong>
+            <a href="/seat/detail/<%= order.screening_id._id %>"><%= order.screening_id._id %></a>
+        </p>
+        <p><strong>Seats:</strong> <%= order.seats.join(', ') %></p>
+        <p><strong>Total Amount:</strong> <%= order.total_amount %> $</p>
+        <p><strong>Status:</strong> <%= OrderStatusLabel[order.status] %></p>
+        <p><strong>Order Date:</strong> <%= order.order_date %></p>
+    </div>
+    <% if(order.status !== 0){ %>
+        <div class="pay-order-btn-container">
+            <button onclick="payOrder()" class="pay-order-btn">Pay Order</button>
+        </div>
+    <% } %>
+    <div class="navigation-links">
+        <a href="/order/all">My Orders</a>
+        <a href="/">Back to Home</a>
+    </div>
+</main>
+<script>
+    function payOrder() {
+        $.ajax({
+            type: 'POST',
+            url: '/order/pay/<%= order._id %>',
+            success: function (data) {
+                alert(data.message)
+                window.location.reload()
+            },
+            error: function (error) {
+                alert(error.responseJSON.message);
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+<header>Admin Dashboard</header>
+<main>
+    <table>
+        <tr>
+            <th>Movies Count</th>
+            <th>Screenings Count</th>
+            <th>Orders Count</th>
+        </tr>
+        <tr>
+            <td><%= movies.length %></td>
+            <td><%= screenings.length %></td>
+            <td><%= orders.length %></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th>Operations</th>
+        </tr>
+        <tr>
+            <td><a href="/admin/movie/view">View All Movies</a></td>
+        </tr>
+        <tr>
+            <td><a href="/admin/screening/">View All Screenings</a></td>
+        </tr>
+        <tr>
+            <td><a href="/admin/orders/">View All Orders</a></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

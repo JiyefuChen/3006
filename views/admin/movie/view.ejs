@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Movies</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+<header>
+    <h1>Manage Movies</h1>
+</header>
+<main>
+    <h2>Add New Movie</h2>
+    <form action="/admin/movie/add" method="post">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <label for="release_date">Release Date:</label>
+        <input type="date" id="release_date" name="release_date" required>
+
+        <label for="duration">Duration (minutes):</label>
+        <input type="number" id="duration" name="duration" required>
+
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" name="genre" required>
+
+        <label for="imageUrl">Image URL:</label>
+        <input type="text" id="imageUrl" name="imageUrl" required>
+
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <h2>Movie List</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Release Date</th>
+            <th>Duration</th>
+            <th>Genre</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% movies.forEach(movie => { %>
+            <tr>
+                <td><%= movie.title %></td>
+                <td><%= movie.description %></td>
+                <td><%= movie.release_date.toISOString().split('T')[0] %></td>
+                <td><%= movie.duration %></td>
+                <td><%= movie.genre %></td>
+                <td>
+                    <a href="/admin/movie/edit/<%= movie._id %>">Edit</a>
+                    <a href="/admin/movie/delete/<%= movie._id %>">Delete</a>
+                </td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

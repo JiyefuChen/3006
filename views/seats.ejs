@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats</title>
+    <link rel="stylesheet" href="/stylesheets/seats.css">
+</head>
+<body>
+<header>
+    <h1>Select Seats for
+        <a style="color: #007bff;text-decoration: none"
+           href="/movie/detail/<%= screening.movie_id._id %>"
+        ><%= screening.movie_id.title %></a>
+        - <%= screening.formattedDate %></h1>
+</header>
+<main>
+    <div class="screen">Screen</div>
+    <div id="seatList" class="seat-list-container">
+        <% seats.forEach(seat => { %>
+            <div class="seat-detail">
+                <input class="seat-btn" type="checkbox" name="selectSeats" seat="<%= seat.id %>"
+                <% if (seat.status !== 0) { %>
+                       disabled
+                        <% } %>
+                >
+                <span class="seat-num"><%= seat.id %></span>
+            </div>
+        <% }); %>
+    </div>
+    <button onclick="reserveSeat()" class="confirm-btn">Submit</button>
+</main>
+<!-- Add jQuery CDN before your script -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    function reserveSeat() {
+        const selectedSeats = $('input[name="selectSeats"]:checked');
+        const seatNumbers = selectedSeats.map((index, seat) => $(seat).attr('seat')).get();
+
+        if (seatNumbers.length > 0) {
+            const confirmation = confirm(`Reserve Seats: ${seatNumbers.join(', ')} - Do you want to proceed?`);
+
+            if (confirmation) {
+                $.ajax({
+                    url: '/seat/reserve',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        screening_id: '<%= screening._id %>',
+                        seat_numbers: seatNumbers,
+                    }),
+                    success: function (response) {
+                        alert(response.message)
+                        window.location.href = `/order/detail/${response.order_id}`
+                    },
+                    error: function (error) {
+                        console.error('Error reserving seats:', error);
+                        alert('Failed to reserve seats. Please try again.');
+                    }
+                });
+            } else {
+                alert('Seat reservation canceled.');
+            }
+        } else {
+            alert('Please select at least one seat.');
+        }
+    }
+</script>
+
+</body>
+</html>

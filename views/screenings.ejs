@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Screenings</title>
+    <link rel="stylesheet" href="/stylesheets/screenings.css">
+</head>
+<body>
+<header>
+    <h1><%= movie.title %> Screenings</h1>
+</header>
+<main>
+    <div id="screeningList" class="screening-list">
+        <% screenings.forEach(screening => { %>
+            <div class="screening">
+                <div class="screening-info">
+                    <div><strong>Start Time:</strong> <%= screening.formattedDate %></div>
+                    <div><strong>Seats Available:</strong> <%= screening.available_seats %></div>
+                    <div><strong>Price:</strong> <%= screening.price %> USD</div>
+                </div>
+                <a href="/seat/detail/<%= screening._id %>" class="screening-button">Select Seats</a>
+            </div>
+        <% }); %>
+    </div>
+</main>
+</body>
+</html>

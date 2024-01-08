@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <link rel="stylesheet" href="/stylesheets/movie/index.css">
+</head>
+<body>
+<header>
+    <h1>Movies List</h1>
+</header>
+<main class="movies-list-container">
+    <div id="movieList" class="movie-list">
+        <% movies.forEach(movie => { %>
+            <div class="movie">
+                <img src="<%= movie.imageUrl %>" alt="<%= movie.title %>" class="movie-image">
+                <div class="movie-details">
+                    <div class="movie-title"><%= movie.title %></div>
+                    <div class="movie-info">
+                        Genre: <%= movie.genre %> <br>
+                        ReleaseTime: <%= movie.formattedDate %> <br>
+                        Duration: <%= movie.duration %> minutes
+                    </div>
+                    <a href="#" class="buy-ticket-button" onclick="buyTicket('<%= movie._id %>')">Buy Ticket</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</main>
+<script>
+    async function buyTicket(movieId, screeningId) {
+        window.location.href = `/screening/detail/${movieId}`;
+    }
+</script>
+</body>
+</html>

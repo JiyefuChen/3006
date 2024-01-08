@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Detail</title>
+    <link rel="stylesheet" href="/stylesheets/movie/detail.css">
+</head>
+<body>
+<header>
+    <h1>Movie Detail</h1>
+</header>
+<main class="movie-detail-container">
+    <div class="movie-info">
+        <h2><%= movie.title %></h2>
+        <img src="<%= movie.imageUrl %>" alt="<%= movie.title %>">
+        <p><strong>Description:</strong> <%= movie.description %></p>
+        <p><strong>Release Date:</strong> <%= movie.release_date.toDateString() %></p>
+        <p><strong>Duration:</strong> <%= movie.duration %> minutes</p>
+        <p><strong>Genre:</strong> <%= movie.genre %></p>
+    </div>
+    <div class="back-to-home">
+        <a href="/">Back to Home</a>
+    </div>
+</main>
+</body>
+</html>

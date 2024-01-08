@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Screening</title>
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+<header>
+    <h1>Manage Screening</h1>
+</header>
+<main>
+    <h2>Edit Screening</h2>
+    <form action="/admin/screening/edit/<%= screening._id %>" method="post">
+        <label for="seats_num">Seats Number:</label>
+        <input id="seats_num" name="seats_num" required type="number" min="1" max="200" value="<%= screening.seats.length %>">
+
+        <label for="start_time">Start Time:</label>
+        <input type="datetime-local" id="start_time" name="start_time" required value="<%= screening.start_time.toISOString().slice(0, 16) %>">
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required min="1" max="200" value="<%= screening.price %>">
+
+        <button type="submit">Save Changes</button>
+    </form>
+</main>
+</body>
+</html>
